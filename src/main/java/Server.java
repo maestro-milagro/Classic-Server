@@ -21,10 +21,10 @@ public class Server {
     public void listen(int port) {
         try (final ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
+                final var socket = serverSocket.accept();
                 threadPool.submit(new Thread(() -> {
                     while (true) {
                         try (
-                                final var socket = serverSocket.accept();
                                 final var in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         ) {
                             var sbH = new StringBuffer();
