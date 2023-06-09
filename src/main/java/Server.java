@@ -25,18 +25,18 @@ public class Server {
     public void start() {
         try (final ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
-                handle(serverSocket);
+                final var socket = serverSocket.accept();
+                handle(socket);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void handle(ServerSocket serverSocket) {
+    public static void handle(Socket socket) {
         threadPool.submit(new Thread(() -> {
             while (true) {
                 try (
-                        final var socket = serverSocket.accept();
                         final var in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         final var out = new BufferedOutputStream(socket.getOutputStream());
                 ) {
