@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73eabb4b-4d37-4e1c-b0a8-373f7f2d5fbc" name="Changes" comment="Init commit">
-      <change afterPath="$PROJECT_DIR$/src/public/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/classic.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/events.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/events.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/forms.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/links.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/resources.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/spring.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/spring.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/styles.css" afterDir="false" />
+    <list default="true" id="73eabb4b-4d37-4e1c-b0a8-373f7f2d5fbc" name="Changes" comment="Functionality added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Handler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Request.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Server.java" afterDir="false" />
@@ -28,11 +19,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -98,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686080786573</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Functionality added">
+      <created>1686217844033</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1686217844033</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -114,6 +118,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init commit" />
+    <MESSAGE value="Functionality added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Functionality added" />
   </component>
 </project>
