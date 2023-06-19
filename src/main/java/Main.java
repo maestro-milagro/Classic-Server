@@ -19,26 +19,6 @@ public class Main {
                 final var path = request.getPath();
                 final var filePath = Path.of(".", "src\\public", path);
                 final var mimeType = Files.probeContentType(filePath);
-
-                // special case for classic
-                if (path.equals("/classic.html")) {
-                    final var template = Files.readString(filePath);
-                    final var content = template.replace(
-                            "{time}",
-                            LocalDateTime.now().toString()
-                    ).getBytes();
-                    out.write((
-                            "HTTP/1.1 200 OK\r\n" +
-                                    "Content-Type: " + mimeType + "\r\n" +
-                                    "Content-Length: " + content.length + "\r\n" +
-                                    "Connection: close\r\n" +
-                                    "\r\n"
-                    ).getBytes());
-                    out.write(content);
-                    out.flush();
-                    return;
-                }
-
                 final var length = Files.size(filePath);
                 out.write((
                         "HTTP/1.1 200 OK\r\n" +
@@ -60,26 +40,6 @@ public class Main {
                 final var path = request.getPath();
                 final var filePath = Path.of(".", "src\\public", path);
                 final var mimeType = Files.probeContentType(filePath);
-
-                // special case for classic
-                if (path.equals("/classic.html")) {
-                    final var template = Files.readString(filePath);
-                    final var content = template.replace(
-                            "{time}",
-                            LocalDateTime.now().toString()
-                    ).getBytes();
-                    out.write((
-                            "HTTP/1.1 200 OK\r\n" +
-                                    "Content-Type: " + mimeType + "\r\n" +
-                                    "Content-Length: " + content.length + "\r\n" +
-                                    "Connection: close\r\n" +
-                                    "\r\n"
-                    ).getBytes());
-                    out.write(content);
-                    out.flush();
-                    return;
-                }
-
                 final var length = Files.size(filePath);
                 out.write((
                         "HTTP/1.1 200 OK\r\n" +
@@ -102,25 +62,6 @@ public class Main {
                 final var filePath = Path.of(".", "src\\public", path);
                 final var mimeType = Files.probeContentType(filePath);
 
-                // special case for classic
-                if (path.equals("/classic.html")) {
-                    final var template = Files.readString(filePath);
-                    final var content = template.replace(
-                            "{time}",
-                            LocalDateTime.now().toString()
-                    ).getBytes();
-                    out.write((
-                            "HTTP/1.1 200 OK\r\n" +
-                                    "Content-Type: " + mimeType + "\r\n" +
-                                    "Content-Length: " + content.length + "\r\n" +
-                                    "Connection: close\r\n" +
-                                    "\r\n"
-                    ).getBytes());
-                    out.write(content);
-                    out.flush();
-                    return;
-                }
-
                 final var length = Files.size(filePath);
                 out.write((
                         "HTTP/1.1 200 OK\r\n" +
@@ -135,7 +76,60 @@ public class Main {
                 System.out.println(e.getMessage());
             }
         });
+        server.addHandler("GET", "/", (request, responseStream) -> {
+            try (
+                    final var out = responseStream;
+            ) {
+                System.out.println(request.getQueryParam("value"));
+                System.out.println(request.getQueryParams());
+                final var path = request.getPath();
+                final var filePath = Path.of(".", "static", path);
+                final var mimeType = Files.probeContentType(filePath);
+
+                final var length = Files.size(filePath);
+                out.write((
+                        "HTTP/1.1 200 OK\r\n" +
+                                "Content-Length: 0\r\n" +
+                                "Connection: close\r\n" +
+                                "\r\n"
+                ).getBytes());
+                Files.copy(filePath, out);
+                out.flush();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+        server.addHandler("POST", "/", (request, responseStream) -> {
+            try (
+                    final var out = responseStream;
+            ) {
+                final var path = request.getPath();
+                final var filePath = Path.of(".", "static", path);
+                final var mimeType = Files.probeContentType(filePath);
+
+                final var length = Files.size(filePath);
+                out.write((
+                        "HTTP/1.1 200 OK\r\n" +
+                                "Content-Length: 0\r\n" +
+                                "Connection: close\r\n" +
+                                "\r\n"
+                ).getBytes());
+                Files.copy(filePath, out);
+                out.flush();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        });
 
         server.listen(8085);
+    }
+    private static void badRequest(BufferedOutputStream out) throws IOException {
+        out.write((
+                "HTTP/1.1 400 Bad Request\r\n" +
+                        "Content-Length: 0\r\n" +
+                        "Connection: close\r\n" +
+                        "\r\n"
+        ).getBytes());
+        out.flush();
     }
 }
